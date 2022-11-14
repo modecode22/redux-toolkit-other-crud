@@ -7,8 +7,8 @@ function App() {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.users.value);
 
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setlastName] = useState("");
   const [newUsername, setNewUsername] = useState("");
 
   return (
@@ -20,7 +20,7 @@ function App() {
             type="text"
             placeholder="Name..."
             onChange={(event) => {
-              setName(event.target.value);
+              setFirstName(event.target.value);
             }}
           />
           <input
@@ -28,7 +28,7 @@ function App() {
             type="text"
             placeholder="Username..."
             onChange={(event) => {
-              setUsername(event.target.value);
+              setlastName(event.target.value);
             }}
           />
         </div>
@@ -38,8 +38,8 @@ function App() {
             dispatch(
               addUser({
                 id: userList[userList.length - 1].id + 1,
-                name,
-                username,
+                firstname,
+                lastname,
               })
             );
           }}
@@ -54,7 +54,7 @@ function App() {
               key={user.id}
               className="p-5 rounded-lg shadow-sm shadow-black bg-slate-400 flex flex-col gap-5 h-60"
             >
-              <div className="flex gap-5">
+              <div className="flex gap-5 font-bold text-xl text-center justify-center ">
                 <h1 className=""> {user.firstname}</h1>
                 <h1> {user.lastname}</h1>
               </div>
@@ -71,7 +71,7 @@ function App() {
                   className="h-10 rounded-lg w-full shadow-sm shadow-black hover:shadow-none duration-100 hover:bg-slate-300 bg-white "
                   onClick={() => {
                     dispatch(
-                      updateUsername({ id: user.id, username: newUsername })
+                      updateUsername({ id: user.id, firstname: newUsername })
                     );
                   }}
                 >
